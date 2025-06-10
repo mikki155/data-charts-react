@@ -1,6 +1,7 @@
-import { legendClasses, LineChart } from "@mui/x-charts";
-import { fetchSomeData } from "../api/api";
-import { CircularProgress, Typography } from "@mui/material";
+import { LineChart } from "@mui/x-charts";
+import { fetchData } from "../api/api";
+import { Typography, CircularProgress } from "@mui/material";
+import { ShowLoadingOrError } from "../utils/ShowLoadingOrError";
 import moment from "moment";
 
 type IDataChartProps = {
@@ -14,15 +15,15 @@ export function DataChart({ area, height, width, timePeriod }: IDataChartProps) 
     const currentDate = moment().format("YYYY-MM-DD");
     const dateOneMonthAgo = moment().subtract(timePeriod, "days").format("YYYY-MM-DD");
 
-    const { data, error, isLoading } = fetchSomeData(`https://data.norges-bank.no/api/data/EXR/B.USD.NOK.SP?format=sdmx-json&startPeriod=${dateOneMonthAgo}&endPeriod=${currentDate}&locale=no`);
-
+    const { data, error, isLoading } = fetchData(`https://data.norges-bank.no/api/data/EXR/B.USD.NOK.SP?format=sdmx-json&startPeriod=${dateOneMonthAgo}&endPeriod=${currentDate}&locale=no`);
+    
     if (isLoading) {
-        return (
-            <CircularProgress />
-        )
-    }
-
-    if (error) {
+            return (
+                <CircularProgress />
+            )
+        }
+    
+    if (error || !data) {
         return (
             <Typography variant="subtitle1" gutterBottom>
                 Could not load data.

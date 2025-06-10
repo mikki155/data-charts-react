@@ -9,7 +9,8 @@ export function MenuBar() {
                     <Typography variant='h6' component="div" sx={{ flexGrow: 1 }}>
                         Data charts
                     </Typography>
-                    <Button color="inherit">Test</Button>
+                    <Button color="inherit" href="/">Charts</Button>
+                    <Button color="inherit" href="/watertemperature">Vanntemperatur</Button>
                 </Toolbar>
             </AppBar>
         </Box>
