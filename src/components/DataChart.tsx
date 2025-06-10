@@ -1,4 +1,4 @@
-import { LineChart } from "@mui/x-charts";
+import { legendClasses, LineChart } from "@mui/x-charts";
 import { fetchSomeData } from "../api/api";
 import { CircularProgress, Typography } from "@mui/material";
 import moment from "moment";
@@ -43,7 +43,8 @@ export function DataChart({ area, height, width, timePeriod }: IDataChartProps) 
 
     return (
         <>
-            <LineChart 
+            <Typography paddingLeft="2vw" variant="h5" gutterBottom>USD vs NOK chart</Typography>
+            <LineChart
                 xAxis={[{
                     scaleType: "time",
                     data: datesArray
